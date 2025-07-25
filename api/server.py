@@ -4,7 +4,6 @@ from app.db.session.session import SessionLocal
 from app.routes.index import api
 from app.config.config import Config
 import os
-
 app = Flask(__name__)
 
 CORS(app, resources={
@@ -14,8 +13,6 @@ CORS(app, resources={
             "http://localhost:5173/"
         ],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": False
     }
     })
 
