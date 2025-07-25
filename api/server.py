@@ -9,12 +9,14 @@ app = Flask(__name__)
 CORS(app, resources={
     r"/api/*": {
         "origins": [
-            "https://test-full-stack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
-            "http://localhost:5173/"
+            "http://localhost:5173",
+            "https://test-fullstack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
+            "https://test-fullstack-python-react-dzk55o446-juantobon7s-projects.vercel.app",
         ],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": "*"
     }
-    })
+})
 
 if __name__ == "__main__":
     app.config.from_object(Config)
