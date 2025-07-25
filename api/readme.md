@@ -1,7 +1,3 @@
-I understand you're asking for a README.md for your backend API. Based on the codebase context, you have a Flask-based restaurant reservation system backend in the `JuanTobon7/Test-FullStack-Python-React` repository. <cite/>
-
-Here's a comprehensive README.md for your backend:
-
 # Restaurant Reservation Backend API
 
 A Flask-based REST API for managing restaurant reservations with comprehensive business rule validation and PostgreSQL database integration. [1](#0-0) 
@@ -154,6 +150,3 @@ All endpoints return standardized error responses: [15](#0-14)
 
 This backend is designed to work with a React frontend and includes CORS support for cross-origin requests. [16](#0-15)  The API uses UUID-based identifiers for all resources and implements comprehensive validation using Pydantic DTOs. [17](#0-16) 
 
-Wiki pages you might want to explore:
-- [System Architecture (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#2)
-- [Reservation Management System (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#3.2)
