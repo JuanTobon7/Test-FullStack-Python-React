@@ -1,71 +1,105 @@
-Restaurant Reservation Backend API
-A Flask-based REST API for managing restaurant reservations with comprehensive business rule validation and PostgreSQL database integration. server.py:1-7
+I understand you're asking for a README.md for your backend API. Based on the codebase context, you have a Flask-based restaurant reservation system backend in the `JuanTobon7/Test-FullStack-Python-React` repository. <cite/>
 
-Technology Stack
-Framework: Flask 3.1.1 with CORS support requirements.txt:11-13
-Database: PostgreSQL with SQLAlchemy 2.0.41 ORM requirements.txt:29-37
-Migrations: Alembic 1.16.4 for database versioning requirements.txt:1
-Validation: Pydantic 2.11.7 for data validation requirements.txt:31-33
-Architecture
+Here's a comprehensive README.md for your backend:
+
+# Restaurant Reservation Backend API
+
+A Flask-based REST API for managing restaurant reservations with comprehensive business rule validation and PostgreSQL database integration. [1](#0-0) 
+
+## Technology Stack
+
+- **Framework**: Flask 3.1.1 with CORS support [2](#0-1) 
+- **Database**: PostgreSQL with SQLAlchemy 2.0.41 ORM [3](#0-2) 
+- **Migrations**: Alembic 1.16.4 for database versioning [4](#0-3) 
+- **Validation**: Pydantic 2.11.7 for data validation [5](#0-4) 
+
+## Architecture
+
 The backend follows a layered architecture pattern:
+- **Routes Layer**: Flask Blueprints for endpoint definitions [6](#0-5) 
+- **Controller Layer**: Request/response handling and HTTP concerns [7](#0-6) 
+- **Service Layer**: Business logic and validation [8](#0-7) 
+- **Model Layer**: SQLAlchemy models and DTOs [9](#0-8) 
 
-Routes Layer: Flask Blueprints for endpoint definitions reservation_restaurant_routes.py:6
-Controller Layer: Request/response handling and HTTP concerns reservation_controller.py:8
-Service Layer: Business logic and validation reservation_service.py:11
-Model Layer: SQLAlchemy models and DTOs reservation_service.py:2-3
-Installation
-Install dependencies:
+## Installation
+
+1. Install dependencies:
+```bash
 pip install -r requirements.txt
-Set up your PostgreSQL database and configure connection settings
+```
 
-Run database migrations:
+2. Set up your PostgreSQL database and configure connection settings
 
+3. Run database migrations:
+```bash
 alembic upgrade head
-Running the Application
-Start the development server: server.py:30-31
+```
 
+## Running the Application
+
+Start the development server: [10](#0-9) 
+```bash
 python server.py
-The API will be available at http://localhost:5000/api
+```
 
-API Endpoints
-Reservation Management
-Method	Endpoint	Description
-GET	/admin/restaurant/{id}/reservations	Get reservations for a restaurant
-POST	/admin/restaurant/{id}/reservations	Create a new reservation
-Restaurant Management
-Method	Endpoint	Description
-GET	/admin/restaurant	Get all restaurants with filters
-POST	/admin/restaurant	Create a new restaurant
-PUT	/admin/restaurant/{id}	Update a restaurant
-DELETE	/admin/restaurant/{id}	Delete a restaurant
-Business Rules
-The reservation system enforces strict booking limits: reservation_service.py:77-84
+The API will be available at `http://localhost:5000/api`
 
-Table Uniqueness: Each table can only have one reservation per day
-Global Daily Limit: Maximum 20 reservations system-wide per day
-Restaurant Daily Limit: Maximum 15 reservations per restaurant per day
-Database Session Management
-The application implements automatic session management: server.py:16-28
+## API Endpoints
 
-Sessions are created automatically for each request
-Automatic commit on successful operations
-Automatic rollback on exceptions
-Proper connection cleanup after each request
-Error Handling
-All endpoints return standardized error responses: reservation_controller.py:16-21
+### Reservation Management
 
-{  
-  "status": "error",  
-  "message": "Error description",  
-  "data": {}  
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/admin/restaurant/{id}/reservations` | Get reservations for a restaurant |
+| `POST` | `/admin/restaurant/{id}/reservations` | Create a new reservation | [11](#0-10) 
+
+### Restaurant Management
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/admin/restaurant` | Get all restaurants with filters |
+| `POST` | `/admin/restaurant` | Create a new restaurant |
+| `PUT` | `/admin/restaurant/{id}` | Update a restaurant |
+| `DELETE` | `/admin/restaurant/{id}` | Delete a restaurant | [12](#0-11) 
+
+## Business Rules
+
+The reservation system enforces strict booking limits: [13](#0-12) 
+
+- **Table Uniqueness**: Each table can only have one reservation per day
+- **Global Daily Limit**: Maximum 20 reservations system-wide per day
+- **Restaurant Daily Limit**: Maximum 15 reservations per restaurant per day
+
+## Database Session Management
+
+The application implements automatic session management: [14](#0-13) 
+
+- Sessions are created automatically for each request
+- Automatic commit on successful operations
+- Automatic rollback on exceptions
+- Proper connection cleanup after each request
+
+## Error Handling
+
+All endpoints return standardized error responses: [15](#0-14) 
+
+```json
+{
+  "status": "error",
+  "message": "Error description",
+  "data": {}
 }
-Environment Variables
-PORT: Server port (default: 5000)
-Database connection settings (configure in your Config class)
-Notes
-This backend is designed to work with a React frontend and includes CORS support for cross-origin requests. server.py:9 The API uses UUID-based identifiers for all resources and implements comprehensive validation using Pydantic DTOs. reservation_service.py:41
+```
+
+## Environment Variables
+
+- `PORT`: Server port (default: 5000)
+- Database connection settings (configure in your Config class)
+
+## Notes
+
+This backend is designed to work with a React frontend and includes CORS support for cross-origin requests. [16](#0-15)  The API uses UUID-based identifiers for all resources and implements comprehensive validation using Pydantic DTOs. [17](#0-16) 
 
 Wiki pages you might want to explore:
-
-System Architecture (JuanTobon7/Test-FullStack-Python-React)
-Reservation Management System (JuanTobon7/Test-FullStack-Python-React)
+- [System Architecture (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#2)
+- [Reservation Management System (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#3.2)
