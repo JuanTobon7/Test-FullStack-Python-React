@@ -4,14 +4,10 @@ from app.db.session.session import SessionLocal
 from app.routes.index import api
 from app.config.config import Config
 import os
+
 app = Flask(__name__)
 
-
-if __name__ == "__main__":
-    app.config.from_object(Config)
-    
-    app.register_blueprint(api, url_prefix='/api')
-    CORS(app, resources={
+CORS(app, resources={
     r"/api/*": {
         "origins": [
             "https://test-full-stack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
@@ -22,6 +18,11 @@ if __name__ == "__main__":
         "supports_credentials": False
     }
     })
+
+if __name__ == "__main__":
+    app.config.from_object(Config)
+    
+    app.register_blueprint(api, url_prefix='/api')
     
     @app.before_request
     def start_session():
