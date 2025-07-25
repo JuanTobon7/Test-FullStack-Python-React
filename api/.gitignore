@@ -1,0 +1,59 @@
+# === Python / Flask ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Byte-compiled / cache / logs
+*.log
+*.pot
+*.mo
+*.db
+*.sqlite3
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.cache/
+coverage/
+htmlcov/
+.tox/
+.mypy_cache/
+.pytest_cache/
+
+# Env / secrets
+.env
+.env.*
+.venv/
+venv/
+ENV/
+Pipfile.lock
+
+# === Flask specific ===
+instance/
+*.db
+*.sqlite
+*.bak
+
+# === VSCode / JetBrains ===
+.vscode/
+.idea/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Test coverage ===
+coverage.xml
+*.cover
+*.coverage
+*.py,cover
+
+# === Misc ===
+*.swp
+*.swo
+*.orig
+*.tmp
+*.bak
