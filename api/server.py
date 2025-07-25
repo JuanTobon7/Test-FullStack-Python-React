@@ -6,7 +6,17 @@ from app.config.config import Config
 import os
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "https://test-full-stack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
+            "http://localhost:5173/"
+        ],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": False
+    }
+})
 
 if __name__ == "__main__":
     app.config.from_object(Config)
