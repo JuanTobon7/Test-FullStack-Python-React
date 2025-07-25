@@ -34,6 +34,7 @@ pip install -r requirements.txt
 ```bash
 alembic upgrade head
 ```
+4. Run seeding
 
 ## Running the Application
 
@@ -41,6 +42,59 @@ Start the development server: [10](#0-9)
 ```bash
 python server.py
 ```
+
+
+
+## Database Seeding
+
+Before using the application, you need to run the seeder to populate the database with initial geodata. [1](#0-0) 
+
+### Run the Seeder
+
+The system includes a seeder for departments and cities of Colombia that must be executed after the migrations:
+
+````bash
+# After running the migrations
+alembic upgrade head
+
+# Run the geodata seeder
+python api/app/db/seeders/seeder__dept_cities.py
+````
+
+### Seeder data
+
+The seeder loads geographic data from a JSON file containing: [2](#0-1) 
+
+- Departments**: 32 departments of Colombia
+- **Cities**: More than 1,000 cities associated to their respective departments [3](#0-2) 
+
+The seeder uses its own independent database session and automatically handles transactions with rollback in case of error. [4](#0-3) 
+
+### Recommended Order of Execution
+
+````bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Configure PostgreSQL database
+
+# 3. Run migrations
+alembic upgrade head
+
+# 4. Run seeder (IMPORTANT)
+python api/app/db/seeders/seeder__dept_cities.py
+
+# 5. Start server
+python server.py
+````
+
+## Notes
+
+El seeder es esencial para el funcionamiento correcto de la aplicación ya que los datos geográficos son requeridos por el sistema de búsqueda de restaurantes. <cite/> Sin ejecutar el seeder, las funcionalidades relacionadas con ubicaciones geográficas no funcionarán correctamente. <cite/>
+
+Wiki pages you might want to explore:
+- [System Architecture (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#2)
+- [Reservation Management System (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#3.2)"
 
 The API will be available at `http://localhost:5000/api`
 
