@@ -11,17 +11,6 @@ if __name__ == "__main__":
     app.config.from_object(Config)
     
     app.register_blueprint(api, url_prefix='/api')
-    CORS(app, resources={
-    r"/api/*": {
-        "origins": [
-            "https://test-full-stack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
-            "http://localhost:5173/"
-        ],
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": False
-    }
-    })
     
     @app.before_request
     def start_session():
