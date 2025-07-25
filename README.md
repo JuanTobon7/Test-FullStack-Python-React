@@ -146,8 +146,3 @@ The system enforces strict business rules through database-level validation:
 ## Notes
 
 This full-stack application demonstrates modern web development practices with TypeScript for type safety, responsive design principles, and robust error handling. The system is designed for scalability with modular architecture and clear separation between frontend presentation and backend business logic. The reservation system implements real-world business constraints while maintaining a smooth user experience through optimized search and intuitive table selection interfaces.
-
-Wiki pages you might want to explore:
-- [System Architecture (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#2)
-- [Reservation Management System (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#3.2)
-- [Frontend Application (JuanTobon7/Test-FullStack-Python-React)](/wiki/JuanTobon7/Test-FullStack-Python-React#4)
