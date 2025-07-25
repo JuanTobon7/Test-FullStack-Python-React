@@ -28,15 +28,24 @@ This system enables users to search restaurants by location, availability, and d
 
 ## Architecture
 
+<img width="1715" height="786" alt="image" src="https://github.com/user-attachments/assets/c9eb88c6-ee1c-4696-b6bc-48bb29c4e41f" />
+
 The application follows a three-tier architecture with clear separation of concerns:
 
 ### Frontend Architecture
+
+<img width="1715" height="266" alt="image" src="https://github.com/user-attachments/assets/25bc2fc9-2c96-4c13-99fb-1cfb112c4635" />
+
 - **Component-based** React structure with reusable UI components
 - **State management** using React hooks without external libraries
 - **Debounced search** to optimize API calls [4](#1-3) 
 - **Responsive design** with mobile-first approach
 
 ### Backend Architecture  
+
+<img width="1625" height="778" alt="image" src="https://github.com/user-attachments/assets/4fadd5ed-0eb7-444b-ab29-f74de281decf" />
+
+
 - **Layered architecture**: Routes → Controllers → Services → Models
 - **Automatic session management** with request lifecycle handling [5](#1-4) 
 - **Blueprint-based routing** for modular endpoint organization [6](#1-5) 
