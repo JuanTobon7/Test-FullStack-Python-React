@@ -51,11 +51,13 @@ async function getReservations(restaurant:RestaurantType,date: string): Promise<
 }
 
 async function getDeptCities(): Promise<CityType[]> {
-  const res = await api.get<ApiResponse<CityType[]>>("/cities");
-  if (res instanceof AxiosError) {
-    throw new Error(res.data.message);
+  try {
+    const res = await api.get<ApiResponse<CityType[]>>("/cities");
+    return res.data.data;
+  } catch (error) {
+    console.error(error)
+    return []  
   }
-  return res.data.data;
 }
 
 async function createReservation(id: string, reservation: ReservationType,): Promise<ReservationType | null> {
