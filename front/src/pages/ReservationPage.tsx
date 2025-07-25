@@ -6,9 +6,8 @@ import { api, ResponseStatus, type ApiResponse } from "../api";
 
 async function getReservations(restaurant: RestaurantType): Promise<ReservationType[]> {
   try {
-    const date = new Date().toISOString().split("T")[0];
     const res = await api.get<ApiResponse<ReservationType[]>>(
-      `/admin/restaurant/${restaurant.id}/reservations/${date}`
+      `/admin/restaurant/${restaurant.id}/reservations`
     );
     if (res.data.status !== ResponseStatus.SUCCESS) return [];
     return res.data.data;

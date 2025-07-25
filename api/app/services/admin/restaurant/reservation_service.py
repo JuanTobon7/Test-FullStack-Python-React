@@ -5,25 +5,34 @@ from app.model.error.app_exception import AppException
 from app.model.response.res import ResponseStatus
 from pydantic import ValidationError
 from sqlalchemy import func, case, and_
-import datetime
+from datetime import date as dateMod
 import uuid
 
 class ReservationService:
     @staticmethod
-    def get_reservation(restaurant_id: uuid,date_str: str) -> list[Reservation]:
-        if not restaurant_id or not date_str:
-            raise AppException('No se proporciono el restaurante requerido', status_code=400)
-        print('restaurant id',restaurant_id)
-        print('date',date_str)
-        try:
-            date = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
-        except ValueError:
-            raise AppException("Formato de fecha inválido. Usa YYYY-MM-DD", status_code=400)
+    def get_reservation(restaurant_id: uuid, date_str: str | None) -> list[Reservation]:
+        if not restaurant_id:
+            raise AppException('No se proporcionó el restaurante requerido', status_code=400)
+
+        query = g.db.query(Reservation).filter(Reservation.restaurant_id == restaurant_id)
+
+        if date_str:
+            try:
+                parsed_date = dateMod.fromisoformat(date_str)
+            except ValueError:
+                raise AppException("Formato de fecha inválido. Usa YYYY-MM-DD", status_code=400)
+            query = query.filter(Reservation.date == parsed_date)
         
-        result = g.db.query(Reservation).filter(Reservation.restaurant_id == restaurant_id).filter(Reservation.date == date).all()
-        print('result',result)
-        if len(result) <= 0:
-            raise AppException("No se encontraron fechas reservadass", status_code=404)
+        query = query.order_by(Reservation.date.desc())
+        result = query.all()
+
+        print("[DEBUG] Reservas encontradas:")
+        for r in result:
+            print(f" - id: {r.id} | date: {r.date} | restaurant_id: {r.restaurant_id}")
+
+        if not result:
+            raise AppException("No se encontraron reservas", status_code=404)
+
         return [res.to_dict() for res in result]
     @staticmethod
     def create_reservation(data) -> Reservation:

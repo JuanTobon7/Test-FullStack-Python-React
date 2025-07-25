@@ -7,8 +7,9 @@ import uuid
 
 class ReservationController:
     @staticmethod
-    def get_reservation(restaurant_id: uuid,date_str: str):
-        try:            
+    def get_reservation(restaurant_id: uuid):
+        try:
+            date_str = request.args.get('date')
             reservations = ReservationService.get_reservation(restaurant_id,date_str)
             res = ResponseModel.success(data=reservations)
             return jsonify(res.to_dict()), 200

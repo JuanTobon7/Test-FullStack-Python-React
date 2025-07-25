@@ -24,15 +24,14 @@ function SideBarSearch({
   cities,
   setLabels,
 }: SideBarSearchProps) {
+  const today = new Date().toISOString().split("T")[0];
+
   const [availability, setAvailability] = useState<number>(15);
   const [startWith, setStartWith] = useState<string>("");
   const [cityId, setCityId] = useState<number | null>(null);
-  const[date, setDate] = useState<string | null>(null)
+  const[date, setDate] = useState<string | null>(today)
 
   const debouncedStartWith = useDebounce(startWith, 300);
-  const debouncedAvailability = useDebounce(availability, 300);
-  const debouncedCityId = useDebounce(cityId, 300);
-  const deboundeDate = useDebounce(date,300);
 
   const cleanFilter = ()=>{
     setAvailability(15)
@@ -41,18 +40,15 @@ function SideBarSearch({
     setDate(new Date().toISOString().split("T")[0])
   }
 
-  useEffect(()=>{
-    setDate(new Date().toISOString().split("T")[0])
-  },[])
-
-  useEffect(() => {      
+  useEffect(() => {
+    console.log('date cambio',date)
       setLabels({
         startWith: debouncedStartWith,
-        aviability: debouncedAvailability,
-        cityId: debouncedCityId,
-        date: deboundeDate
+        aviability: availability,
+        cityId: cityId,
+        date: date
       })
-  }, [debouncedStartWith, debouncedAvailability, debouncedCityId,setLabels,deboundeDate]);
+  }, [debouncedStartWith, date, cityId,setLabels,availability]);
 
   return (
     <aside
@@ -110,17 +106,17 @@ function SideBarSearch({
 
         {client && (
           <>
-            <div className="grid gap-1 mb-4">
-          <label htmlFor="search-by-date">Buscar disponibilidad por Fecha</label>
-          <input
-            id="search-by-date"
-            type="date"
-            value={date ?? ""}
-            onChange={(e)=> setDate(e.target.value)}
-            disabled={!availabilityButton}
-            className="border border-gray-300 rounded px-2 py-1 focus:border-blue-700 focus:outline-none cursor-pointer"
-          />
-        </div>
+          <div className="grid gap-1 mb-4">
+            <label htmlFor="search-by-date">Buscar disponibilidad por Fecha</label>
+            <input
+              id="search-by-date"
+              type="date"
+              value={date ?? ""}
+              onChange={(e)=> setDate(e.target.value)}
+              disabled={!availabilityButton}
+              className="border border-gray-300 rounded px-2 py-1 focus:border-blue-700 focus:outline-none cursor-pointer"
+            />
+          </div>
           <div className="grid gap-2 mb-4">
             <label htmlFor="availability-range">
               Buscar por rango de disponibilidad de mesa

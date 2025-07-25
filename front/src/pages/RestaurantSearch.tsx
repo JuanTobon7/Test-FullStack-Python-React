@@ -42,9 +42,8 @@ async function getRestaurants(label: LabelSearch|null): Promise<RestaurantType[]
 
   return res.data.data;
 }
-async function getReservations(restaurant:RestaurantType): Promise<ReservationType[]> {
-  const date = new Date().toISOString().split("T")[0];
-  const res = await api.get<ApiResponse<ReservationType[]>>(`/admin/restaurant/${restaurant.id}/reservations/${date}`);
+async function getReservations(restaurant:RestaurantType,date: string): Promise<ReservationType[]> {
+  const res = await api.get<ApiResponse<ReservationType[]>>(`/admin/restaurant/${restaurant.id}/reservations?date=${date}`);
   if (res.data.status !== ResponseStatus.SUCCESS) {
     return []
   }
@@ -119,8 +118,8 @@ export function ListRestaurants() {
     const fetchReservation = async () => {
       try {
         setLoadingBank(false)
-      if (!restaurant) return;
-      const response = await getReservations(restaurant);      
+      if (!restaurant || !label?.date) return;
+      const response = await getReservations(restaurant,label.date);      
       setReservationBank(response);
       } catch (error) {
         console.error(error)
@@ -130,7 +129,7 @@ export function ListRestaurants() {
       }
     };
     fetchReservation();
-  }, [restaurant]);
+  }, [restaurant,label]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 gap-2">

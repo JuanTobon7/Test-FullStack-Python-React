@@ -83,7 +83,7 @@ export function ReservationRestaurant({
       </div>
 
       <span className="text-left text-sm text-gray-600 w-full md:w-1/2">
-        Haz click para reservar la mesa deseada para la fecha hoy
+        Haz click para reservar la mesa deseada para la fecha {date}
       </span>
 
       <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 w-full lg:w-1/2">
