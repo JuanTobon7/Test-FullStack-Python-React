@@ -10,8 +10,7 @@ CORS(app, resources={
     r"/api/*": {
         "origins": [
             "http://localhost:5173",
-            "https://test-fullstack-python-react-ts1cg5vfj-juantobon7s-projects.vercel.app",
-            "https://test-fullstack-python-react-dzk55o446-juantobon7s-projects.vercel.app",
+            "https://test-full-stack-python-react.vercel.app"
         ],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": "*"
