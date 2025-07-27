@@ -1,7 +1,5 @@
 # Test-FullStack-Python-React
 
-You're asking for a README.md for the entire full-stack restaurant reservation project, which consists of a React TypeScript frontend and Flask Python backend in the `JuanTobon7/Test-FullStack-Python-React` repository. <cite/>
-
 # Restaurant Reservation System
 
 A full-stack web application for restaurant discovery and table reservations, built with React TypeScript frontend and Flask Python backend. [1](#1-0) 
